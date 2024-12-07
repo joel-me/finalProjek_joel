@@ -1,0 +1,368 @@
+/* Reset and Box Model */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* CSS Variables */
+:root {
+  --primary-color: #ff6700;
+  --secondary-color: #333;
+  --background-color: #f9f9f9;
+  --text-color: #000;
+  --link-hover-color: orange;
+  --light-gray: #ddd;
+  --dark-gray: #666;
+}
+
+/* Body Styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: var(--background-color);
+}
+
+/* Header Styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.logo img {
+  width: 30px;
+  height: 30px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: var(--text-color);
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: var(--link-hover-color);
+}
+
+/* Icons Section */
+.icons {
+  display: flex;
+  align-items: center;
+}
+
+.icons img {
+  width: 20px;
+  height: 20px;
+  margin-left: 20px;
+}
+
+/* Slider Section */
+.slider-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Wrapper untuk slide */
+.slider-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 300%; /* Sesuaikan lebar dengan jumlah slide */
+}
+
+/* Slide */
+.slider-slide {
+  flex-shrink: 0;
+  width: 100%; /* Ukuran penuh sesuai layar */
+}
+
+/* Gambar Responsif */
+.slider-slide img {
+  width: 35%; /* Sesuaikan dengan lebar container */
+  height: auto; /* Pertahankan aspek rasio */
+  object-fit: cover; /* Memastikan gambar terlihat penuh */
+}
+
+/* Navigation Dots */
+.navigation-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.navigation-dots button {
+  width: 10px;
+  height: 10px;
+  border: none;
+  border-radius: 50%;
+  background-color: #ddd;
+  cursor: pointer;
+}
+
+.navigation-dots button.active {
+  background-color: orange;
+}
+/* Featured Products Section */
+.featured-products {
+  padding: 20px;
+  background-color: var(--background-color);
+  text-align: center;
+  margin-top: 50px;
+}
+
+.featured-products h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.menu li {
+  margin: 0 20px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.menu li a {
+  text-decoration: none;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+.menu li.active a {
+  color: var(--link-hover-color);
+  border-bottom: 2px solid var(--link-hover-color);
+  padding-bottom: 5px;
+}
+
+.menu li a:hover {
+  color: var(--link-hover-color);
+}
+
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-item {
+  background-color: white;
+  border: 1px solid var(--light-gray);
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.product-item img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.product-item button {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.product-item button:hover {
+  background-color: #131313;
+  transform: scale(1.05);
+}
+
+/* Product Item Hover Effect */
+.product-item:hover {
+  transform: translateY(-5px);
+}
+
+/* Offers */
+.offers-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+h2 {
+  text-align: center;
+}
+.offer-item {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s;
+  flex: 1 1 calc(30% - 20px);
+  max-width: calc(30% - 20px);
+}
+
+.offer-item img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.offer-item button {
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.offer-item button:hover {
+  background: #e65a00;
+  transform: scale(1.05);
+}
+
+.offer-item:hover {
+  transform: translateY(-5px);
+}
+
+/* Responsive behavior for smaller screens */
+@media (max-width: 768px) {
+  .offers-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .offer-item {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+
+.support-section {
+  background-color: #fff;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.support-options {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.option {
+  max-width: 200px;
+}
+
+.option img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 15px;
+}
+
+.option h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.option p {
+  font-size: 0.9em;
+  color: var(--dark-gray);
+}
+
+.footer {
+  background-color: var(--secondary-color);
+  color: #fff;
+  padding: 40px 0;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-column h4 {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.footer-column ul {
+  list-style: none;
+  font-size: 0.9em;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.social-media .social-icons a img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+form {
+  margin: 20px 0;
+}
+
+form input {
+  padding: 10px;
+  width: 70%;
+  border: none;
+  border-radius: 5px;
+}
+
+form button {
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+form button:hover {
+  background-color: #ff5500;
+  transform: scale(1.05);
+}
+
+.footer-column img {
+  width: 100px;
+  margin-top: 20px;
+}
+
+/* Additional focus styles for accessibility */
+nav ul li a:focus,
+.product-item button:focus,
+.offer-item button:focus,
+form button:focus {
+  outline: 2px solid var(--link-hover-color);
+}

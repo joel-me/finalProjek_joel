@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xiaomi Indonesia & Dukungan</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li>
+            <div class="logo">
+              <img src="aset/th.jpeg" alt="Logo Xiaomi Indonesia" />
+            </div>
+          </li>
+          <li><a href="#">Mobile</a></li>
+          <li><a href="#">Wearables</a></li>
+          <li><a href="#">Smart Home</a></li>
+          <li><a href="#">Lifestyle</a></li>
+          <li><a href="#">POCO</a></li>
+        </ul>
+      </nav>
+      <nav>
+        <ul>
+          <li><a href="#">Discover</a></li>
+          <li><a href="#">Support</a></li>
+          <li><a href="#">Community</a></li>
+          <li>
+            <div class="icons">
+              <img src="aset/search.png" alt="Search Icon" />
+              <img src="aset/shopping-cart.png" alt="Shopping Cart" />
+              <a href="biografi.html">
+                <img src="aset/user.png" alt="User Profile" />
+              </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="slider-container">
+      <!-- Slides Wrapper -->
+      <div id="sliderWrapper" class="slider-wrapper">
+        <div class="slider-slide">
+          <img src="aset/1.jpg" alt="Slider Image 1" />
+        </div>
+        <div class="slider-slide">
+          <img src="aset/2.jpg" alt="Slider Image 2" />
+        </div>
+        <div class="slider-slide">
+          <img src="aset/3.jpg" alt="Slider Image 3" />
+        </div>
+      </div>
+
+      <!-- Navigation Dots -->
+      <div class="navigation-dots" id="navigationDots"></div>
+    </section>
+
+    <!-- JavaScript -->
+    <script>
+      const sliderWrapper = document.getElementById("sliderWrapper");
+      const navigationDots = document.getElementById("navigationDots");
+
+      const slides = document.querySelectorAll(".slider-slide");
+      const totalSlides = slides.length;
+      let currentIndex = 0;
+
+      // Generate navigation dots dynamically
+      for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement("button");
+        if (i === 0) dot.classList.add("active");
+        dot.addEventListener("click", () => {
+          currentIndex = i;
+          updateSlider();
+        });
+        navigationDots.appendChild(dot);
+      }
+
+      // Function to update the slider position
+      const updateSlider = () => {
+        sliderWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
+        const dots = document.querySelectorAll(".navigation-dots button");
+        dots.forEach((dot, index) => {
+          dot.classList.toggle("active", index === currentIndex);
+        });
+      };
+
+      // Auto-slide functionality
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateSlider();
+      }, 5000); // Change slide every 5 seconds
+    </script>
+
+    <!-- Featured Products Section -->
+    <section class="featured-products">
+      <h2>Featured Products</h2>
+      <ul class="menu">
+        <li class="active"><a href="#">Wearables</a></li>
+        <li><a href="#">Smartphones</a></li>
+        <li><a href="#">Xiaomi TV Series</a></li>
+        <li><a href="#">POCO</a></li>
+        <li><a href="#">Pad</a></li>
+      </ul>
+
+      <div class="product-grid">
+        <div class="product-item">
+          <img src="aset/tws 1.webp" alt="Xiaomi Buds 5" />
+          <p>Xiaomi Buds 5</p>
+          <p>Rp 1.199.000</p>
+          <button onclick="window.location.href='product-detail.html'">
+            Learn More
+          </button>
+        </div>
+        <div class="product-item">
+          <img src="aset/sw1.webp" alt="Xiaomi Smart Band 9" />
+          <p>Xiaomi Smart Band 9</p>
+          <p>Rp 519.000</p>
+          <button onclick="window.location.href='product-detail.html'">
+            Learn More
+          </button>
+        </div>
+        <div class="product-item">
+          <img src="aset/sw2.webp" alt="Xiaomi Watch 2" />
+          <p>Xiaomi Watch 2</p>
+          <p>Mulai dari Rp 2.299.000</p>
+          <button onclick="window.location.href='product-detail.html'">
+            Learn More
+          </button>
+        </div>
+        <div class="product-item">
+          <img src="aset/tws2.webp" alt="Redmi Buds 6 Active" />
+          <p>Redmi Buds 6 Active</p>
+          <p>Rp 189.000</p>
+          <button onclick="window.location.href='product-detail.html'">
+            Learn More
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Exclusive Offers Section -->
+    <section class="exclusive-offers">
+      <h2>Exclusive Offers</h2>
+      <div class="offers-grid">
+        <div class="offer-item">
+          <img src="aset/overs1.webp" alt="Mi Points Center" />
+          <h3>Mi Points Center</h3>
+          <button
+            onclick="window.location.href='https://buy.mi.co.id/id/user/points-center/'"
+          >
+            Learn More
+          </button>
+        </div>
+        <div class="offer-item">
+          <img src="aset/overs2.jpg" alt="Zona Pengguna Baru" />
+          <h3>Zona Pengguna Baru</h3>
+          <p>
+            Selamat datang! Ada hadiah eksklusif voucher Rp 75k bagi Anda yang
+            baru...
+          </p>
+          <button
+            onclick="window.location.href='https://www.mi.co.id/id/new-user/'"
+          >
+            Learn More
+          </button>
+        </div>
+        <div class="offer-item">
+          <img src="aset/overs3.webp" alt="Tukar Tambah" />
+          <h3>Tukar Tambah</h3>
+          <p>Lebih untung, lebih hemat! *Syarat dan Ketentuan Berlaku</p>
+          <button
+            onclick="window.location.href='https://event.mi.co.id/id/tradein'"
+          >
+            Learn More
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Support Section -->
+    <section class="support-section">
+      <div class="support-options">
+        <div class="option">
+          <img src="aset/p1.png" alt="Service Center Icon" />
+          <h3>Service Center</h3>
+          <p>Perbaikan dengan 100% suku cadang resmi asli</p>
+        </div>
+        <div class="option">
+          <img src="aset/p2.png" alt="Garansi Icon" />
+          <h3>Garansi</h3>
+          <p>Perlindungan kebijakan garansi lokal disediakan</p>
+        </div>
+        <div class="option">
+          <img src="aset/p3.png" alt="Tracking Icon" />
+          <h3>Lacak Status Pesanan</h3>
+          <p>Menanyakan kemajuan layanan produk</p>
+        </div>
+        <div class="option">
+          <img src="aset/p4.png" alt="Manual Icon" />
+          <h3>Panduan Pengguna</h3>
+          <p>Temukan dan unduh panduan pengguna produk Xiaomi</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h4>PRODUK</h4>
+          <ul>
+            <li>Xiaomi 14</li>
+            <li>POCO F6</li>
+            <li>Redmi Note 13 Pro+ 5G</li>
+            <li>POCO Pad</li>
+            <li>Xiaomi TV A Pro 32</li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>DUKUNGAN</h4>
+          <ul>
+            <li>Panduan Pengguna</li>
+            <li>Kewajiban pendaftaran IMEI ponsel Anda</li>
+            <li>Garansi</li>
+            <li>FAQ Pengiriman</li>
+            <li>Service Center Resmi</li>
+            <li>Gerai Terdekat</li>
+            <li>LAYANAN EKSKLUSIF VIP</li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4>TENTANG</h4>
+          <ul>
+            <li><a href="https://fti.unai.edu/">fti unai</a></li>
+            <li><a href="https://unai.edu/">unai web</a></li>
+            <li><a href="https://jurnal.unai.edu/">fti unai</a></li>
+            <li><a href="contactUs.html">contact us</a></li>
+          </ul>
+        </div>
+        <div class="footer-column social-media">
+          <h4>Ikuti sosial media Xiaomi</h4>
+          <div class="social-icons">
+            <a href="#"><img src="aset/facebook.png" alt="Facebook" /></a>
+            <a href="#"><img src="aset/instagram.png" alt="Instagram" /></a>
+            <a href="#"><img src="aset/twitter.png" alt="Twitter" /></a>
+            <a href="#"><img src="aset/youtube.png" alt="YouTube" /></a>
+          </div>
+          <h4>Untuk berlangganan buletin kami</h4>
+          <form>
+            <input type="email" placeholder="Masukkan alamat email di sini" />
+            <button type="submit">Submit</button>
+          </form>
+          <h4>Unduh Aplikasi Mi Store</h4>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
