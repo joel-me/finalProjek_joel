@@ -366,3 +366,55 @@ nav ul li a:focus,
 form button:focus {
   outline: 2px solid var(--link-hover-color);
 }
+
+/* Explore Xiaomi Section */
+.explore-xiaomi {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.explore-xiaomi h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-img {
+  width: 100%;
+  height: auto;
+}
+
+.card-content {
+  padding: 10px;
+}
+
+.card-title {
+  font-weight: bold;
+  margin: 10px 0;
+  color: #ff4d4f;
+}
+
+.card-content p {
+  color: #666;
+}
