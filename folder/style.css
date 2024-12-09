@@ -75,7 +75,7 @@ nav ul li a:hover {
 .slider-container {
   position: relative;
   width: 100%;
-  height: 100vh; /* Mengatur tinggi slider mengikuti tinggi viewport */
+  height: 100%; /* Will be adjusted by media query */
   overflow: hidden;
 }
 
@@ -87,36 +87,38 @@ nav ul li a:hover {
 
 .slider-slide {
   flex-shrink: 0;
-  width: 100%;
-  height: 100%; /* Mengatur tinggi setiap slide mengikuti tinggi slider */
+  height: 100%; /* Will be adjusted by media query */
 }
 
 .slider-slide img {
-  width: 100%; /* Mengatur lebar gambar mengikuti lebar container */
-  height: 100%; /* Mengatur tinggi gambar mengikuti tinggi container */
-  object-fit: cover; /* Memastikan gambar tetap terpotong dengan proporsional */
+  width: 100%; /* Set image width to 100% to fill the container */
+  height: 100%; /* Set image height to 100% to fill the container */
+  object-fit: cover; /* Ensure image is cropped proportionally */
+  object-position: center center; /* Keep the image centered */
 }
 
-.navigation-dots {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
+/* Default size (for larger screens, like desktop) */
+@media (min-width: 769px) {
+  .slider-container {
+    height: 412px; /* Set the height to 412px for desktop */
+  }
+
+  .slider-slide {
+    width: 300px; /* Set the width to 300px for desktop */
+    height: 412px; /* Set the height to 412px for desktop */
+  }
 }
 
-.navigation-dots button {
-  width: 10px;
-  height: 10px;
-  border: none;
-  border-radius: 50%;
-  background-color: #ddd;
-  cursor: pointer;
-}
+/* For smaller screens (Mobile and Tablets) */
+@media (max-width: 768px) {
+  .slider-container {
+    height: 545px; /* Set the height to 545px for mobile */
+  }
 
-.navigation-dots button.active {
-  background-color: orange;
+  .slider-slide {
+    width: 400px; /* Set the width to 400px for mobile */
+    height: 545px; /* Set the height to 545px for mobile */
+  }
 }
 
 /* Featured Products Section */
