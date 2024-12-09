@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Posts</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100">
+    <!-- Header Section -->
+    <header class="bg-blue-500 text-white p-4 text-center">
+      <h1 class="text-2xl font-semibold">Data Postingan</h1>
+    </header>
+
+    <div class="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
+      <h2 class="text-xl font-semibold mb-6">Data Postingan</h2>
+
+      <!-- Container untuk menampilkan kartu -->
+      <div
+        id="posts-container"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
+        <!-- Kartu akan dimuat di sini -->
+      </div>
+
+      <!-- Kembali ke Halaman Utama -->
+      <div class="mt-6 text-center">
+        <a
+          href="index.html"
+          class="text-blue-500 hover:text-blue-700 font-semibold"
+          >Kembali ke Halaman Utama</a
+        >
+      </div>
+    </div>
+
+    <script>
+      // Fungsi untuk mengambil data menggunakan Fetch API
+      fetch("https://jsonplaceholder.typicode.com/posts/48")
+        .then((response) => response.json())
+        .then((data) => {
+          // Menampilkan data ke dalam layout
+          const postsContainer = document.getElementById("posts-container");
+
+          // Membuat elemen kartu
+          const postCard = document.createElement("div");
+          postCard.classList.add(
+            "bg-white",
+            "p-6",
+            "rounded-lg",
+            "shadow-md",
+            "hover:shadow-lg",
+            "transition",
+            "duration-300"
+          );
+
+          postCard.innerHTML = `
+                    <h3 class="text-lg font-bold text-blue-500">ID: ${data.id}</h3>
+                    <h4 class="text-xl font-semibold mt-2">${data.title}</h4>
+                    <p class="mt-4 text-gray-700">${data.body}</p>
+                `;
+
+          // Menambahkan kartu ke dalam kontainer
+          postsContainer.appendChild(postCard);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+          alert("Terjadi kesalahan saat memuat data!");
+        });
+    </script>
+  </body>
+</html>
