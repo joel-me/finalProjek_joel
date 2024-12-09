@@ -481,3 +481,45 @@ form button:hover {
     height: 25px;
   }
 }
+
+/* Hamburger Menu and Mobile Navigation */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+}
+
+.menu-toggle img {
+  width: 30px;
+  height: 30px;
+}
+
+/* Mobile Navigation */
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+  }
+}
