@@ -1,0 +1,809 @@
+/* Reset and Box Model */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* CSS Variables */
+:root {
+  --primary-color: #ff6700;
+  --secondary-color: #333;
+  --background-color: #f9f9f9;
+  --text-color: #000;
+  --link-hover-color: orange;
+  --light-gray: #ddd;
+  --dark-gray: #666;
+}
+
+/* Body Styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: var(--background-color);
+}
+
+/* Header Styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff;
+  border-bottom: 1px solid var(--light-gray);
+}
+
+.logo img {
+  width: 30px;
+  height: 30px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: var(--text-color);
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: var(--link-hover-color);
+}
+
+/* Mobile Navigation */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+}
+
+.menu-toggle img {
+  width: 30px;
+  height: 30px;
+}
+
+/* Media Queries for responsiveness */
+
+/* For larger screens, display the navigation normally */
+@media (min-width: 768px) {
+  .menu-toggle {
+    display: none;
+  }
+
+  nav ul {
+    display: flex;
+    gap: 20px;
+  }
+}
+
+/* For smaller screens (tablets and mobile), use a hamburger menu */
+@media (max-width: 768px) {
+  nav ul {
+    display: none; /* Hide navigation links */
+    flex-direction: column;
+    width: 100%;
+    background-color: #fff;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    padding: 10px 0;
+  }
+
+  nav ul li {
+    margin: 10px 0;
+    text-align: center;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  nav ul.active {
+    display: flex; /* Show navigation links when the menu is toggled */
+  }
+
+  /* Adjust logo size */
+  .logo img {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+/* For mobile screens (portrait) */
+@media (max-width: 480px) {
+  nav ul li {
+    font-size: 14px;
+  }
+}
+/* Slider Container */
+.slider-container {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Full height of the viewport */
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.slider-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+  height: 100%;
+}
+
+.slider-slide {
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slider-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure image covers the container, cropping excess */
+  display: block;
+}
+
+/* Prev and Next Buttons */
+button.prev,
+button.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+button.prev {
+  left: 10px;
+}
+
+button.next {
+  right: 10px;
+}
+
+button.prev:hover,
+button.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Dots Navigation */
+.navigation-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+}
+
+.navigation-dots .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+
+.navigation-dots .dot.active {
+  background-color: #ff6700;
+}
+
+/* Desktop: Full screen and full width image */
+@media (min-width: 1024px) {
+  .slider-container {
+    height: 100vh; /* Full height for desktop */
+  }
+
+  .slider-slide img {
+    object-fit: cover; /* Ensure image covers the entire container */
+    height: 100%; /* Fill the full height of the container */
+  }
+}
+
+/* Tablet: Adjust height */
+@media (max-width: 768px) {
+  .slider-container {
+    height: 400px; /* Adjust height for tablets */
+  }
+
+  .slider-slide img {
+    object-fit: cover;
+    height: 100%; /* Ensure image covers the container */
+  }
+}
+
+/* Mobile: Fixed height and cropped to 400x545 */
+@media (max-width: 480px) {
+  .slider-container {
+    height: 545px; /* Fixed height for mobile */
+  }
+
+  .slider-slide img {
+    object-fit: cover; /* Crop the image while maintaining aspect ratio */
+    height: 545px; /* Fixed height */
+  }
+}
+
+/* Featured Products Section */
+.featured-products {
+  padding: 20px;
+  background-color: var(--background-color);
+  text-align: center;
+  margin-top: 50px;
+}
+
+.featured-products h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.menu li {
+  margin: 0 15px;
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+.menu li a {
+  text-decoration: none;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+.menu li.active a {
+  color: var(--link-hover-color);
+  border-bottom: 2px solid var(--link-hover-color);
+  padding-bottom: 5px;
+}
+
+.menu li a:hover {
+  color: var(--link-hover-color);
+}
+
+/* Featured Products Section */
+.featured-products {
+  padding: 20px;
+  background-color: var(--background-color);
+  text-align: center;
+  margin-top: 50px;
+}
+
+.featured-products h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.menu li {
+  margin: 0 15px;
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+.menu li a {
+  text-decoration: none;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+.menu li.active a {
+  color: var(--link-hover-color);
+  border-bottom: 2px solid var(--link-hover-color);
+  padding-bottom: 5px;
+}
+
+.menu li a:hover {
+  color: var(--link-hover-color);
+}
+
+/* Featured Products Section */
+.featured-products {
+  padding: 20px;
+  background-color: var(--background-color);
+  text-align: center;
+  margin-top: 50px;
+}
+
+.featured-products h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.menu li {
+  margin: 0 15px;
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+.menu li a {
+  text-decoration: none;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+.menu li.active a {
+  color: var(--link-hover-color);
+  border-bottom: 2px solid var(--link-hover-color);
+  padding-bottom: 5px;
+}
+
+.menu li a:hover {
+  color: var(--link-hover-color);
+}
+
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.product-item {
+  background-color: white;
+  border: 1px solid var(--light-gray);
+  border-radius: 5px;
+  padding: 10px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.product-item img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.product-item button {
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.product-item button:hover {
+  background-color: #131313;
+  transform: scale(1.05);
+}
+
+.product-item:hover {
+  transform: translateY(-5px);
+}
+
+/* Offers Section */
+.offers-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.offer-item {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s;
+  flex: 1 1 calc(30% - 20px); /* Default untuk tampilan 3 item di desktop */
+  max-width: calc(30% - 20px); /* Default untuk tampilan 3 item di desktop */
+}
+
+.offer-item img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.offer-item button {
+  background: var(--primary-color);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s ease;
+}
+
+.offer-item button:hover {
+  background: #e65a00;
+  transform: scale(1.05);
+}
+
+.offer-item:hover {
+  transform: translateY(-5px);
+}
+
+/* Media Query untuk Mode Tablet (max-width: 768px) */
+@media (max-width: 768px) {
+  .offers-grid {
+    flex-direction: row; /* Menjaga item dalam satu baris */
+    justify-content: space-between; /* Memberikan jarak antar item */
+  }
+
+  .offer-item {
+    width: calc(50% - 20px); /* Dua item berdampingan pada tablet dan ponsel */
+    margin-bottom: 20px; /* Memberikan jarak antara baris item */
+  }
+}
+
+/* Media Query untuk Mode Ponsel (max-width: 480px) */
+@media (max-width: 480px) {
+  .offer-item {
+    width: calc(100% - 20px); /* Satu item per baris pada ponsel */
+    margin-bottom: 20px; /* Memberikan jarak antar item */
+  }
+}
+
+/* Explore Xiaomi Section */
+.explore-xiaomi {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.explore-xiaomi h2 {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.slider-container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px; /* Lebar maksimal */
+  margin: 0 auto; /* Menyusun di tengah */
+  overflow: hidden; /* Menyembunyikan bagian gambar yang keluar */
+  height: auto; /* Sesuaikan tinggi dengan konten (gambar) */
+}
+
+.slider-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  flex-shrink: 0;
+  margin: 0 10px; /* Jarak antar kartu */
+  width: calc(33.33% - 20px); /* Tampilkan 3 kartu di satu baris di desktop */
+}
+
+.card-img {
+  width: 100%;
+  height: auto; /* Sesuaikan tinggi gambar agar proporsional */
+  object-fit: cover; /* Agar gambar proporsional */
+}
+
+.card-content {
+  padding: 10px;
+}
+
+.card-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-description {
+  font-size: 0.9em;
+  color: var(--dark-gray);
+}
+
+.card-btn {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.card-btn:hover {
+  background-color: #ff5500;
+  transform: scale(1.05);
+}
+
+button.prev,
+button.next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+button.prev {
+  left: 10px;
+}
+
+button.next {
+  right: 10px;
+}
+
+button.prev:hover,
+button.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Media Query untuk Desktop (Windows) */
+@media (min-width: 1024px) {
+  .slider-wrapper {
+    flex-direction: row; /* Menampilkan gambar dalam baris */
+  }
+
+  .card {
+    width: calc(
+      33.33% - 20px
+    ); /* Tiga kartu berdampingan pada layar desktop dengan jarak */
+    margin: 0 10px; /* Jarak antar kartu */
+  }
+}
+
+/* Media Query untuk Tablet */
+@media (max-width: 768px) {
+  .slider-wrapper {
+    flex-direction: row; /* Menampilkan gambar dalam baris */
+  }
+
+  .card {
+    width: calc(
+      50% - 20px
+    ); /* Dua kartu berdampingan di layar tablet dengan jarak antar kartu */
+    margin: 0 10px; /* Jarak antar kartu */
+  }
+}
+
+/* Media Query untuk Ponsel */
+@media (max-width: 480px) {
+  .slider-wrapper {
+    flex-direction: row; /* Menampilkan gambar dalam baris */
+  }
+
+  .card {
+    width: calc(
+      100% - 20px
+    ); /* Menampilkan satu kartu di layar ponsel dengan jarak */
+    margin: 0 10px; /* Jarak antar kartu */
+  }
+}
+
+/* Support Section */
+.support-section {
+  background-color: #fff;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.support-options {
+  display: flex;
+  justify-content: space-between; /* Menyebar elemen secara merata */
+  align-items: center; /* Menyelaraskan elemen secara vertikal */
+  margin: 0 auto;
+  max-width: 1200px;
+  flex-wrap: wrap; /* Membungkus elemen ke baris baru jika diperlukan */
+  gap: 20px; /* Memberikan jarak antara elemen */
+}
+
+.option {
+  max-width: 200px;
+  flex: 1 1 calc(33.33% - 20px); /* Setiap elemen memiliki lebar 33.33% pada desktop */
+  text-align: center;
+}
+
+.option img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto; /* Menempatkan gambar di tengah */
+}
+
+.option h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+.option p {
+  font-size: 0.9em;
+  color: var(--dark-gray);
+}
+
+/* Responsif untuk Tablet dan Ponsel */
+@media (max-width: 768px) {
+  .option {
+    flex: 1 1 calc(50% - 20px); /* 2 elemen berdampingan pada tablet */
+  }
+}
+
+@media (max-width: 480px) {
+  .option {
+    flex: 1 1 100%; /* 1 elemen per baris pada ponsel */
+  }
+}
+
+/* Footer Section */
+.footer {
+  background-color: var(--secondary-color);
+  color: #fff;
+  padding: 40px 0;
+}
+
+/* Menyusun footer content dengan flexbox */
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+/* Styling kolom footer */
+.footer-column {
+  width: 22%; /* Menampilkan kolom footer secara horizontal pada desktop */
+  margin-bottom: 20px;
+}
+
+.footer-column h4 {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.footer-column ul {
+  list-style: none;
+  font-size: 0.9em;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.footer-column img {
+  width: 100px;
+  margin-top: 20px;
+}
+
+/* Styling untuk ikon sosial media */
+.social-media {
+  display: flex;
+  flex-direction: column; /* Menyusun ikon sosial media secara vertikal */
+  justify-content: center;
+  gap: 20px; /* Jarak antar ikon sosial media */
+  width: 100%;
+  margin-bottom: 20px; /* Memberikan jarak bawah untuk ikon sosial media */
+}
+
+/* Ikon sosial media */
+.social-icons a img {
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s;
+}
+
+/* Hover efek pada ikon sosial media */
+.social-icons a img:hover {
+  transform: scale(1.1);
+}
+
+/* Media Query untuk Desktop (Windows) */
+@media (min-width: 1024px) {
+  .footer-content {
+    flex-direction: row; /* Menyusun konten footer secara horizontal */
+  }
+
+  /* Menambahkan 4 kolom pada desktop */
+  .footer-column {
+    width: 22%; /* Menampilkan 4 kolom pada desktop */
+  }
+
+  /* Mengatur posisi sosial media di sebelah kanan */
+  .social-media {
+    flex-direction: column; /* Ikon sosial media tetap vertikal */
+    width: 20%; /* Menyediakan ruang untuk sosial media */
+    margin-left: 20px; /* Memberikan jarak antara kolom dengan sosial media */
+  }
+}
+
+/* Media Query untuk Tablet */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column; /* Kolom akan disusun secara vertikal di tablet */
+    align-items: center; /* Memusatkan elemen footer */
+  }
+
+  /* Menyembunyikan kolom footer lainnya */
+  .footer-column {
+    display: none;
+  }
+
+  .social-media {
+    display: flex;
+    flex-direction: column; /* Menyusun sosial media secara vertikal */
+    justify-content: center; /* Mengatur ikon sosial media agar berada di tengah */
+    gap: 20px;
+    margin-top: 20px;
+    width: 100%; /* Memperlebar kolom sosial media di tablet */
+  }
+}
+
+/* Media Query untuk Ponsel */
+@media (max-width: 480px) {
+  .footer-content {
+    flex-direction: column; /* Menyusun elemen footer secara vertikal */
+    align-items: center; /* Memusatkan footer content */
+  }
+
+  .social-media {
+    display: flex;
+    flex-direction: column; /* Menyusun sosial media secara vertikal */
+    justify-content: center; /* Menjaga ikon sosial media tetap rata tengah */
+    gap: 20px;
+    margin-top: 20px;
+    width: 100%; /* Memperlebar kolom sosial media di ponsel */
+  }
+
+  .social-icons a img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-align: center;
+}

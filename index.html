@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Xiaomi Indonesia & Dukungan</title>
-    <link rel="stylesheet" href="folder/style.css" />
+    <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.js" />
   </head>
   <body>
     <header>
@@ -13,11 +14,11 @@
         <img src="aset/th.jpeg" alt="Logo" />
       </div>
       <nav>
-        <ul id="nav-menu" class="nav-links">
+        <ul id="nav-pilihan" class="nav-links">
           <li><a href="#">Home</a></li>
           <li><a href="#">About</a></li>
           <li><a href="#">Products</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="contactUs.html">Contact Us</a></li>
         </ul>
         <div class="menu-toggle" id="menu-toggle">
           <img src="aset/hamburger-menu-512.webp" alt="Menu" />
@@ -26,7 +27,6 @@
     </header>
 
     <section class="slider-container">
-      <!-- Slides Wrapper -->
       <div id="sliderWrapper" class="slider-wrapper">
         <div class="slider-slide">
           <img src="aset/1.jpg" alt="Slider Image 1" />
@@ -38,55 +38,69 @@
           <img src="aset/3.jpg" alt="Slider Image 3" />
         </div>
       </div>
-      <script>
-        document
-          .getElementById("menu-toggle")
-          .addEventListener("click", function () {
-            const navMenu = document.getElementById("nav-menu");
-            navMenu.classList.toggle("active");
-          });
-      </script>
+
+      <!-- Tombol Navigasi -->
+      <button class="prev">Prev</button>
+      <button class="next">Next</button>
 
       <!-- Navigation Dots -->
       <div class="navigation-dots" id="navigationDots"></div>
     </section>
-
-    <!-- JavaScript -->
     <script>
-      const sliderWrapper = document.getElementById("sliderWrapper");
-      const navigationDots = document.getElementById("navigationDots");
+      // Inisialisasi variabel untuk kontrol slider
+      let currentSlide = 0;
+      const slides = document.querySelectorAll(".slider-slide"); // Ambil semua gambar slider
+      const totalSlides = slides.length; // Jumlah total gambar slider
 
-      const slides = document.querySelectorAll(".slider-slide");
-      const totalSlides = slides.length;
-      let currentIndex = 0;
+      // Fungsi untuk menampilkan slide tertentu
+      function showSlide(index) {
+        if (index >= totalSlides) {
+          currentSlide = 0; // Jika slide lebih banyak dari yang tersedia, mulai dari awal
+        } else if (index < 0) {
+          currentSlide = totalSlides - 1; // Jika slide lebih kecil dari 0, pindah ke slide terakhir
+        } else {
+          currentSlide = index;
+        }
 
-      // Generate navigation dots dynamically
-      for (let i = 0; i < totalSlides; i++) {
-        const dot = document.createElement("button");
-        if (i === 0) dot.classList.add("active");
-        dot.addEventListener("click", () => {
-          currentIndex = i;
-          updateSlider();
-        });
-        navigationDots.appendChild(dot);
+        // Mengubah posisi slider untuk memindahkan gambar
+        const newTransformValue = `translateX(-${currentSlide * 100}%)`;
+        document.querySelector(".slider-wrapper").style.transform =
+          newTransformValue;
       }
 
-      // Function to update the slider position
-      const updateSlider = () => {
-        sliderWrapper.style.transform = `translateX(-${currentIndex * 100}%)`;
-        const dots = document.querySelectorAll(".navigation-dots button");
-        dots.forEach((dot, index) => {
-          dot.classList.toggle("active", index === currentIndex);
+      // Fungsi untuk bergerak ke slide berikutnya
+      document.querySelector(".next").addEventListener("click", () => {
+        showSlide(currentSlide + 1);
+      });
+
+      // Fungsi untuk bergerak ke slide sebelumnya
+      document.querySelector(".prev").addEventListener("click", () => {
+        showSlide(currentSlide - 1);
+      });
+
+      // Menampilkan slide pertama saat halaman dimuat
+      showSlide(currentSlide);
+
+      // Membuat dots navigasi
+      function createDots() {
+        const dotsContainer = document.getElementById("navigationDots");
+        dotsContainer.innerHTML = ""; // Hapus isi sebelumnya
+
+        // Buat dot untuk setiap slide
+        slides.forEach((slide, index) => {
+          const dot = document.createElement("span");
+          dot.classList.add("dot");
+          if (index === currentSlide) dot.classList.add("active"); // Tandai dot aktif
+          dotsContainer.appendChild(dot);
+
+          // Menambahkan event listener untuk setiap dot
+          dot.addEventListener("click", () => showSlide(index));
         });
-      };
+      }
 
-      // Auto-slide functionality
-      setInterval(() => {
-        currentIndex = (currentIndex + 1) % totalSlides;
-        updateSlider();
-      }, 5000); // Change slide every 5 seconds
+      // Menampilkan dots saat slide berubah
+      createDots();
     </script>
-
     <!-- Featured Products Section -->
     <section class="featured-products">
       <h2>Featured Products</h2>
@@ -102,11 +116,14 @@
         <div class="product-item">
           <img src="aset/tws 1.webp" alt="Xiaomi Buds 5" />
           <p>Xiaomi Buds 5</p>
-          <p>Rp 1.199.000</p>
-          <button onclick="window.location.href='product-detail.html'">
-            Learn More
-          </button>
+          <p>
+            Rp 1.199.000< /p>
+            <button onclick="window.location.href='product-detail.html'">
+              Learn More
+            </button>
+          </p>
         </div>
+
         <div class="product-item">
           <img src="aset/sw1.webp" alt="Xiaomi Smart Band 9" />
           <p>Xiaomi Smart Band 9</p>
@@ -136,7 +153,7 @@
 
     <!-- Exclusive Offers Section -->
     <section class="exclusive-offers">
-      <h2>Exclusive Offers</h2>
+      <h2 class="">Exclusive Offers</h2>
       <div class="offers-grid">
         <div class="offer-item">
           <img src="aset/overs1.webp" alt="Mi Points Center" />
@@ -161,7 +178,7 @@
           </button>
         </div>
         <div class="offer-item">
-          <img src="aset/overs3.webp" alt="Tukar Tambah" />
+          <img src="aset/overs3.jpeg" alt="Tukar Tambah" />
           <h3>Tukar Tambah</h3>
           <p>Lebih untung, lebih hemat! *Syarat dan Ketentuan Berlaku</p>
           <button
@@ -173,8 +190,63 @@
       </div>
     </section>
 
+    <!--explore-->
+    <section class="explore-xiaomi">
+      <h2>Explore Xiaomi</h2>
+      <div class="slider-container">
+        <div class="slider-wrapper">
+          <div class="card">
+            <img
+              src="aset/mi14.webp"
+              alt="Xiaomi 14T Series"
+              class="card-img"
+            />
+            <div class="card-content">
+              <h3>Apa perbedaannya?</h3>
+              <p class="card-title">Xiaomi 14T vs Xiaomi 14T Pro</p>
+              <p>
+                Semua yang perlu Anda ketahui tentang Xiaomi 14T dan 14T Pro,
+                menyoroti fitur utama dan perbedaannya.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="aset/fotografi.webp"
+              alt="Midnight Tales"
+              class="card-img"
+            />
+            <div class="card-content">
+              <h3>Midnight Tales</h3>
+              <p class="card-title">Midnight Tales: Xiaomi 14T Series</p>
+              <p>
+                Dalam Kisah Tengah Malam, Tulus dan Anton Ismael menjelajahi
+                aktivitas malam yang ditangkap kreatif.
+              </p>
+            </div>
+          </div>
+          <div class="card">
+            <img
+              src="aset/semtuh gambar.webp"
+              alt="Setahun Gambar Otentik"
+              class="card-img"
+            />
+            <div class="card-content">
+              <h3>Setahun Gambar yang Otentik</h3>
+              <p class="card-title">Setahun gambar otentik dengan Leica</p>
+              <p>
+                Jelajahi setahun kreativitas dan keautentikan dalam fotografi
+                bersama Xiaomi dan Leica.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Support Section -->
     <section class="support-section">
+      <h2>Dukungan Xiaomi</h2>
       <div class="support-options">
         <div class="option">
           <img src="aset/p1.png" alt="Service Center Icon" />
@@ -195,52 +267,6 @@
           <img src="aset/p4.png" alt="Manual Icon" />
           <h3>Panduan Pengguna</h3>
           <p>Temukan dan unduh panduan pengguna produk Xiaomi</p>
-        </div>
-      </div>
-    </section>
-    <!--explore-->
-    <section class="explore-xiaomi">
-      <h2>Explore Xiaomi</h2>
-      <div class="card-container">
-        <!-- Card 1 -->
-        <div class="card">
-          <img src="aset/image1.jpg" alt="Xiaomi 14T Series" class="card-img" />
-          <div class="card-content">
-            <h3>Apa perbedaannya?</h3>
-            <p class="card-title">Xiaomi 14T vs Xiaomi 14T Pro</p>
-            <p>
-              Semua yang perlu Anda ketahui tentang Xiaomi 14T dan 14T Pro,
-              menyoroti fitur utama dan perbedaannya.
-            </p>
-          </div>
-        </div>
-        <!-- Card 2 -->
-        <div class="card">
-          <img src="aset/image2.jpg" alt="Midnight Tales" class="card-img" />
-          <div class="card-content">
-            <h3>Midnight Tales</h3>
-            <p class="card-title">Midnight Tales: Xiaomi 14T Series</p>
-            <p>
-              Dalam Kisah Tengah Malam, Tulus dan Anton Ismael menjelajahi
-              aktivitas malam yang ditangkap kreatif.
-            </p>
-          </div>
-        </div>
-        <!-- Card 3 -->
-        <div class="card">
-          <img
-            src="aset/image3.jpg"
-            alt="Setahun Gambar Otentik"
-            class="card-img"
-          />
-          <div class="card-content">
-            <h3>Setahun Gambar yang Otentik</h3>
-            <p class="card-title">Setahun gambar otentik dengan Leica</p>
-            <p>
-              Jelajahi setahun kreativitas dan keautentikan dalam fotografi
-              bersama Xiaomi dan Leica.
-            </p>
-          </div>
         </div>
       </div>
     </section>
@@ -281,12 +307,20 @@
         </div>
         <div class="footer-column social-media">
           <h4>Ikuti sosial media Xiaomi</h4>
-          <div class="social-icons">
-            <a href="#"><img src="aset/facebook.png" alt="Facebook" /></a>
-            <a href="#"><img src="aset/instagram.png" alt="Instagram" /></a>
-            <a href="#"><img src="aset/twitter.png" alt="Twitter" /></a>
-            <a href="#"><img src="aset/youtube.png" alt="YouTube" /></a>
-          </div>
+          <ul class="social-icons">
+            <li>
+              <a href="#"><img src="aset/facebook.png" alt="Facebook" /></a>
+            </li>
+            <li>
+              <a href="#"><img src="aset/instagram.png" alt="Instagram" /></a>
+            </li>
+            <li>
+              <a href="#"><img src="aset/twitter.png" alt="Twitter" /></a>
+            </li>
+            <li>
+              <a href="#"><img src="aset/youtube.png" alt="YouTube" /></a>
+            </li>
+          </ul>
           <h4>Untuk berlangganan buletin kami</h4>
           <form>
             <input type="email" placeholder="Masukkan alamat email di sini" />
